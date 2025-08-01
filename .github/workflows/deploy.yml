@@ -1,34 +1,27 @@
 name: Deploy
-
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - name: checkout
+        uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - name: setup node
+        uses: actions/setup-node@v3
         with:
-          node-version: "22"
+          node-version: '20'
 
-      - name: Install dependencies
-        run: npm install
+      - name: install deps
+        run: npm ci
 
-      - name: Configure Git
-        run: |
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
+      - name: build
+        run: npm run build
 
-      - name: Deploy to GitHub Pages
+      - name: deploy to gh-pages
         env:
           PA_TOKEN: ${{ secrets.PA_TOKEN }}
-        run: |
-          git remote set-url origin https://x-access-token:${PA_TOKEN}@github.com/${{ github.repository }}.git
-          npm run deploy
+        run: npm run deploy
