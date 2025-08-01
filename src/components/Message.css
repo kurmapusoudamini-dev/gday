@@ -1,0 +1,83 @@
+.message {
+    max-width: 90%;
+    margin: 2rem auto;
+    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(190, 24, 93, 0.15);
+    backdrop-filter: blur(15px);
+    border: 2px solid rgba(236, 72, 153, 0.3);
+    position: relative;
+    overflow: hidden;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.message p {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 5vw, 2.2rem);
+    color: #be185d;
+    text-align: center;
+    line-height: 1.7;
+    font-weight: 600;
+    margin: 0;
+    position: relative;
+    z-index: 2;
+    text-shadow: 2px 2px 4px rgba(190, 24, 93, 0.1);
+    letter-spacing: 0.5px;
+}
+
+.message-decoration {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #ec4899, #f472b6, #fbbf24);
+    border-radius: 2px;
+}
+
+.message::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(236, 72, 153, 0.05), transparent);
+    animation: shine 3s infinite;
+    pointer-events: none;
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) translateY(-100%) rotate(45deg);
+    }
+
+    50% {
+        transform: translateX(0%) translateY(0%) rotate(45deg);
+    }
+
+    100% {
+        transform: translateX(100%) translateY(100%) rotate(45deg);
+    }
+}
+
+@media (max-width: 768px) {
+    .message {
+        margin: 1rem auto;
+        padding: 2rem 1.5rem;
+        max-width: 95%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .message p {
+        font-size: clamp(1.1rem, 4vw, 1.4rem);
+        line-height: 1.6;
+        width: 100%;
+    }
+}

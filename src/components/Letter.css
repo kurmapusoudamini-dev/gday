@@ -1,0 +1,220 @@
+.letter-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    perspective: 1000px;
+    z-index: 30;
+}
+
+.envelope {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    margin-bottom: 2rem;
+    transform-style: preserve-3d;
+    z-index: 31;
+}
+
+.envelope-body {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(251, 191, 36, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.envelope-body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+    animation: envelope-shine 3s infinite;
+}
+
+@keyframes envelope-shine {
+
+    0%,
+    100% {
+        transform: translateX(-100%);
+    }
+
+    50% {
+        transform: translateX(100%);
+    }
+}
+
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    border-radius: 10px 10px 0 0;
+    transform-origin: bottom center;
+    box-shadow: 0 5px 15px rgba(217, 119, 6, 0.3);
+    z-index: 2;
+}
+
+.envelope-flap::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 60px solid #d97706;
+}
+
+.envelope-seal {
+    font-size: 2rem;
+    z-index: 3;
+    position: relative;
+}
+
+.letter-paper {
+    width: 90%;
+    max-width: 400px;
+    min-height: 500px;
+    background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+    border-radius: 15px;
+    padding: 2.5rem;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    border: 3px solid rgba(251, 191, 36, 0.3);
+    position: relative;
+    overflow: hidden;
+    z-index: 32;
+}
+
+.letter-paper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 40px;
+    width: 2px;
+    height: 100%;
+    background: rgba(239, 68, 68, 0.3);
+}
+
+.letter-paper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    background: repeating-linear-gradient(transparent,
+            transparent 24px,
+            rgba(156, 163, 175, 0.2) 24px,
+            rgba(156, 163, 175, 0.2) 26px);
+    pointer-events: none;
+}
+
+.letter-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.crown {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.letter-header h2 {
+    color: #be185d;
+    font-size: clamp(1.8rem, 5vw, 2.5rem);
+    font-family: 'Dancing Script', cursive;
+    margin: 0;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(190, 24, 93, 0.2);
+}
+
+.letter-content {
+    position: relative;
+    z-index: 2;
+}
+
+.letter-message {
+    font-size: clamp(1.2rem, 4vw, 1.6rem);
+    color: #7c2d12;
+    line-height: 1.8;
+    margin-bottom: 1.8rem;
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(124, 45, 18, 0.1);
+    letter-spacing: 0.3px;
+}
+
+.signature {
+    margin-top: 3rem;
+    text-align: right;
+    font-style: italic;
+}
+
+.signature p {
+    color: #be185d;
+    font-size: clamp(1.1rem, 3vw, 1.4rem);
+    margin: 0.5rem 0;
+    font-family: 'Dancing Script', cursive;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(190, 24, 93, 0.1);
+}
+
+.signature-name {
+    font-weight: bold;
+    font-size: clamp(1.4rem, 4vw, 1.8rem) !important;
+    color: #ec4899 !important;
+    font-family: 'Dancing Script', cursive !important;
+}
+
+.letter-heart {
+    position: absolute;
+    font-size: 1.2rem;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@media (max-width: 768px) {
+    .envelope {
+        width: 250px;
+        height: 160px;
+    }
+
+    .letter-paper {
+        width: 95%;
+        padding: 1.5rem;
+        min-height: 400px;
+    }
+
+    .crown {
+        font-size: 2.5rem;
+    }
+
+    .letter-message {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .signature {
+        margin-top: 2rem;
+    }
+}
